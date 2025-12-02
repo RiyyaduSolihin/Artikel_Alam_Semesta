@@ -16,9 +16,11 @@ const mongoose = require('mongoose'); // import mongoose untuk koneksi DB
 
 // koneksi ke MongoDB lokal
 
-mongoose.connect('mongodb://127.0.0.1:27017/alam_semesta')
-  .then(() => console.log("MongoDB connected"))
-  .catch(err => console.error("MongoDB connection error:", err));
+mongoose.connect('mongodb://127.0.0.1:27017/alam_semesta', {
+  serverSelectionTimeoutMS: 5000 // batas waktu koneksi 5 detik
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("MongoDB connection error:", err));
 
 // import router artikel
 const articleRoutes = require('./app/routes/articleRoutes');
